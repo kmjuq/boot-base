@@ -1,9 +1,11 @@
 package com.kmjuq.bootbase.redis;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.*;
 import org.springframework.data.redis.serializer.RedisSerializer;
@@ -17,6 +19,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @author mengjian.ke@hand-china.com 2020/11/19 16:23
  */
 @Configuration
+@ConditionalOnClass(RedisTemplate.class)
 public class RedisConfig {
 
     @Bean
@@ -59,10 +62,10 @@ public class RedisConfig {
         RedisTemplate<String, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(redisConnectionFactory());
 
-        template.setKeySerializer(new StringRedisSerializer());
+        template.setKeySerializer(RedisSerializer.string());
         template.setValueSerializer(RedisSerializer.json());
 
-        template.setHashKeySerializer(new StringRedisSerializer());
+        template.setHashKeySerializer(RedisSerializer.string());
         template.setHashValueSerializer(RedisSerializer.json());
 
         template.afterPropertiesSet();
