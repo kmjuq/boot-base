@@ -13,7 +13,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Setter
 @Getter
-@ConfigurationProperties(prefix = "ke.config")
+@ConfigurationProperties(prefix = "base")
 public class BootBaseProperties {
 
 
@@ -22,5 +22,7 @@ public class BootBaseProperties {
     private class RedisProperties{
 
     }
+
+
 
 }
