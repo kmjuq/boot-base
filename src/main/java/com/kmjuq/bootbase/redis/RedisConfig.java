@@ -1,6 +1,8 @@
 package com.kmjuq.bootbase.redis;
 
+import com.kmjuq.bootbase.constant.PropertyConstant;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -19,7 +21,6 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @author mengjian.ke@hand-china.com 2020/11/19 16:23
  */
 @Configuration
-@ConditionalOnClass(RedisTemplate.class)
 public class RedisConfig {
 
     @Bean

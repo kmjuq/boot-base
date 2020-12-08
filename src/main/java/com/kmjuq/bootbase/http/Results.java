@@ -39,10 +39,6 @@ public class Results {
         return newResult(null, null, httpStatus);
     }
 
-    public static <T> ResponseEntity<T> newResult(T data) {
-        return newResult(data, null, HttpStatus.OK);
-    }
-
     public static <T> ResponseEntity<T> newResult(HttpHeaders httpHeaders, HttpStatus httpStatus) {
         return newResult(null, httpHeaders, httpStatus);
     }
