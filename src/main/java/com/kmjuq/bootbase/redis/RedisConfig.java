@@ -7,11 +7,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.*;
 import org.springframework.data.redis.serializer.RedisSerializer;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
  * <p>
@@ -21,6 +19,8 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @author mengjian.ke@hand-china.com 2020/11/19 16:23
  */
 @Configuration
+@ConditionalOnClass(RedisTemplate.class)
+@ConditionalOnProperty(prefix = PropertyConstant.BOOT_BASE_MODULE_PREFIX, name = PropertyConstant.BOOT_BASE_MODULE_REDIS, havingValue = PropertyConstant.YES)
 public class RedisConfig {
 
     @Bean
@@ -29,32 +29,32 @@ public class RedisConfig {
     }
 
     @Bean
-    public StringRedisTemplate stringRedisTemplate(){
+    public StringRedisTemplate stringRedisTemplate() {
         return new StringRedisTemplate(redisConnectionFactory());
     }
 
     @Bean("valueOperationsForStr")
-    public ValueOperations<String,String> valueOperationsForStr(){
+    public ValueOperations<String, String> valueOperationsForStr() {
         return stringRedisTemplate().opsForValue();
     }
 
     @Bean("listOperationsForStr")
-    public ListOperations<String,String> listOperationsForStr(){
+    public ListOperations<String, String> listOperationsForStr() {
         return stringRedisTemplate().opsForList();
     }
 
     @Bean("hashOperationsForStr")
-    public HashOperations<String,String,String> hashOperationsForStr(){
+    public HashOperations<String, String, String> hashOperationsForStr() {
         return stringRedisTemplate().opsForHash();
     }
 
     @Bean("setOperationsForStr")
-    public SetOperations<String,String> setOperationsForStr(){
+    public SetOperations<String, String> setOperationsForStr() {
         return stringRedisTemplate().opsForSet();
     }
 
     @Bean("zSetOperationsForStr")
-    public ZSetOperations<String,String> zSetOperationsForStr(){
+    public ZSetOperations<String, String> zSetOperationsForStr() {
         return stringRedisTemplate().opsForZSet();
     }
 

@@ -28,7 +28,7 @@ public class BootBaseProperties {
     @Setter
     @Getter
     @ConditionalOnProperty(prefix = PropertyConstant.BOOT_BASE_MODULE_PREFIX,name = PropertyConstant.BOOT_BASE_MODULE_REDIS,havingValue = PropertyConstant.YES)
-    @ConfigurationProperties(PropertyConstant.BOOT_BASE_REDIS_PREFIX)
+    @ConfigurationProperties(PropertyConstant.BOOT_BASE_CONFIG_REDIS_PREFIX)
     private static class RedisProperties{
         private String host;
         private String port;

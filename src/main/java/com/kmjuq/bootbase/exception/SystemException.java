@@ -1,5 +1,7 @@
 package com.kmjuq.bootbase.exception;
 
+import lombok.ToString;
+
 /**
  * <p>
  *
@@ -9,6 +11,15 @@ package com.kmjuq.bootbase.exception;
  */
 public class SystemException extends AppException {
 
+    public SystemException() {
+        super();
+    }
 
+    public SystemException(String code, String message) {
+        super(code, message);
+    }
 
+    public SystemException(AppExceptionEnum appExceptionEnum) {
+        super(appExceptionEnum);
+    }
 }

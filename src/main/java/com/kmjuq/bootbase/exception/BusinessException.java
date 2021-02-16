@@ -1,5 +1,7 @@
 package com.kmjuq.bootbase.exception;
 
+import lombok.ToString;
+
 /**
  * <p>
  *
@@ -9,6 +11,16 @@ package com.kmjuq.bootbase.exception;
  */
 public class BusinessException extends AppException {
 
+    public BusinessException() {
+        super();
+    }
 
+    public BusinessException(String code, String message) {
+        super(code, message);
+    }
+
+    public BusinessException(AppExceptionEnum appExceptionEnum) {
+        super(appExceptionEnum);
+    }
 
 }
